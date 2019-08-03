@@ -1,8 +1,9 @@
 bits/
 Debug/
-*.cpp
+sorce.cpp
 *.user
 RCa02216
 RCb02216
 RCc02216
 test1.vcxproj.filters
+test1.vcxproj

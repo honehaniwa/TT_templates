@@ -1,0 +1,1 @@
+rep(k, n)rep(i, n)rep(j, n) wf[i][j] = min(wf[i][j], wf[i][k] + wf[k][j]);
