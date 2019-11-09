@@ -1,50 +1,51 @@
+#define M 1000000000000000000LL
+// <最短距離, 頂点の番号>
+using P = pair<long long, long long>;
+
+//----------for me-------------
+
 struct edge {
-    int to;
-    int cost;
+	long long to;
+	long long cost;
 };
 
-// <最短距離, 頂点の番号>
-using P = pair<int, int>;
+vector<long long> dijkstra(int x, vector<vector<edge>> G) {
+	priority_queue<P, vector<P>, greater<P> > que;
+	vector<long long> dist(G.size(), M);
+	dist[x] = 0;
+	que.push(P(0, x));
 
-int V;
-vector<edge> G[MAX_V];
-int d[MAX_V];
+	while (!que.empty()) {
+		P p = que.top();
+		que.pop();
+		int v = p.second;
+		if (dist[v] < p.first) continue;
 
-void dijkstra(int s) {
-    priority_queue<P, vector<P>, greater<P> > que;
-    fill(d, d+V, INF);
-    d[s] = 0;
-    que.push(P(0, s));
-
-    while (!que.empty()) {
-        P p = que.top();
-        que.pop();
-        int v = p.second;
-        if (d[v] < p.first) continue;
-
-        for (int i=0; i<G[v].size(); ++i) {
-            edge e = G[v][i];
-            if (d[e.to] > d[v] + e.cost) {
-                d[e.to] = d[v] + e.cost;
-                que.push(P(d[e.to], e.to));
-            }
-        }
-    }
+		for (edge e : G[v]) {
+			if (dist[e.to] > dist[v] + e.cost) {
+				dist[e.to] = dist[v] + e.cost;
+				que.push(P(dist[e.to], e.to));
+			}
+		}
+	}
+	return dist;
 }
-
+/*
+//使用例
 int main() {
+	int V;//頂点数 
     cin >> V;
-    int E;
+    int E;//入力数(V*(V-1)/2>=E)
     cin >> E;
+	vector<vector<edge>> G;//グラフ
     for (int i=0; i<E; ++i) {
-        int a, b, c;
+        long long a, b, c;
         cin >> a >> b >> c;
-        edge e = {b, c};
-        G[a].push_back(e);
+        G[a].push_back(edge{b,c});
     }
-    dijkstra(0);
-    for (int i=0; i<V; ++i) {
+    for(auto d: dijkstra(0,G) {
         if(d[i] != INF)
             cout << "0から" << i << "までのコスト: " << d[i] << endl;
     }
 }
+*/

@@ -1,7 +1,7 @@
-vll enum_div(ll n)//n‚Ì–ñ”‚ğ—ñ‹“
+vector<long long> divisor(long long n)//n‚Ì–ñ”‚ğ—ñ‹“
 {
-	vll w;
-	for (int i = 1; i*i <= n; ++i)
+	vector<long long> w;
+	for (long long i = 1; i*i <= n; ++i)
 	{
 		if (n%i == 0)
 		{
@@ -14,5 +14,6 @@ vll enum_div(ll n)//n‚Ì–ñ”‚ğ—ñ‹“
 			}
 		}
 	}
+	sort(w.begin(), w.end());
 	return w;
 }
