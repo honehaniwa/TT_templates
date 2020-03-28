@@ -30,6 +30,28 @@ vector<long long> dijkstra(int x, vector<vector<edge>> G) {
 	}
 	return dist;
 }
+
+//-------for vector 辺のコストが1の時使える--------
+vector<long long> dijkstra(int x, vector<vector<long long>> G) {
+	priority_queue<long long, vector<long long>, greater<long long>> que;
+	vector<long long> dist(G.size(), M);
+	dist[x] = 0;
+	que.push(x);
+
+	while (!que.empty()) {
+		ll p = que.top();
+		que.pop();
+
+		for (auto e : G[p]) {
+			if (e == p)continue;
+			if (dist[e] > dist[p] + 1) {
+				dist[e] = dist[p] + 1;
+				que.push(e);
+			}
+		}
+	}
+	return dist;
+}
 /*
 //使用例
 int main() {
