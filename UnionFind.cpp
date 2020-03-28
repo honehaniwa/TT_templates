@@ -1,5 +1,7 @@
 struct UnionFind {
+private:
 	vector<long long> data;
+public:
 	UnionFind(long long size) : data(size, -1) { }
 	bool unite(long long x, long long y) {
 		x = root(x); y = root(y);
