@@ -1,5 +1,6 @@
 #define M 1000000000000000000LL
 
+
 template< typename T >
 using Edges = vector< edge< T > >;
 template< typename T >
