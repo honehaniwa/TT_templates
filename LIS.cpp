@@ -19,15 +19,15 @@
 
 
 
-ll LIS(vll a) {
-	n = a.size();
-	vector<ll> dp(n, M);
-	for (ll i = 0; i<n; i++) {
-		ll tmp = lower_bound(all(dp), a[i]) - dp.begin();
+long long LIS(vector<long long> a) {
+	long long n = a.size();
+	vector<long long> dp(n, LLONG_MAX);
+	for (long long i = 0; i<n; i++) {
+		long long tmp = lower_bound(all(dp), a[i]) - dp.begin();
 		dp[tmp] = a[i];
 	}
-	ll k = 0;
-	while (k<n && dp[k] != M) k++;
+	long long k = 0;
+	while (k<n && dp[k] != LLONG_MAX) k++;
 	return k;
 }
 
